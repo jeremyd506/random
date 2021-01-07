@@ -3,12 +3,16 @@ import math
 from fractions import Fraction
 
 def rectangle(boardLength):    
+    kerf = float(boardLength)-.5
+    print("Board length accounting for 1/8 kerf cuts:" + str(kerf))
     goldenRatio = 1.618
-    counter = float(boardLength)
+    #counter = float(boardLength)
+    counter = kerf
     height = 0
     width = 0
     while math.isclose(goldenRatio, round(counter,3)) == False:
-        height = float(boardLength)/counter
+        #height = float(boardLength)/counter
+        height = kerf/counter
         counter -= .001
 
     counter = height  
@@ -27,7 +31,8 @@ def rectangle(boardLength):
     roundWidth = round(width)
     totalLength = roundHeight*2 + roundWidth*2
 
-    if totalLength <= float(boardLength):
+   # if totalLength <= float(boardLength):
+    if totalLength <= kerf:
         print("Round measurement will fit in board length")
         print("Round Height is: " + str(roundHeight)) 
         print("Round Width is: " + str(roundWidth))
